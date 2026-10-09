@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AloExpress Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--p:#ff4747;--bd:#dbdbdb;--ok:#00c853}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Tajawal',sans-serif}
+body{background:#f8f9fa;color:#1a1a1a;line-height:1.6}
+.top-banner{background:linear-gradient(135deg,#222,#333);color:#fff;text-align:center;padding:8px 15px;font-size:14px;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+.top-banner span{background:var(--p);padding:2px 8px;border-radius:4px;font-size:12px;font-weight:700}
+header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06);position:sticky;top:0;z-index:1000;padding:12px 5%;display:none;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:6px;background:#fff3f3;padding:6px 12px;border-radius:30px;border:1px solid #ffd1d1}
+.brand i{color:var(--p)}
+.brand b{font-weight:900;font-size:18px;background:linear-gradient(45deg,#ff4747,#ff6b00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.actions{display:flex;gap:10px;align-items:center}
+.dropdown{position:relative}
+.dropbtn{background:#f0f2f5;padding:10px 16px;font-size:15px;font-weight:700;border:none;border-radius:8px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.dropdown-content{display:none;position:absolute;left:0;background:#fff;min-width:290px;box-shadow:0 8px 24px rgba(0,0,0,.12);border-radius:12px;z-index:1001;border:1px solid var(--bd)}
+.dropdown:hover .dropdown-content,.dropdown:focus-within .dropdown-content{display:block}
+.dsec{padding:14px;border-bottom:1px solid #eee}.dsec:last-child{border:none}
+.dsec h4{font-size:14px;color:var(--p);margin-bottom:6px}
+.dsec p{font-size:13px;color:#555;word-break:break-all}
+.btn{background:var(--p);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px}
+.btn.dark{background:#333}
+.container{max-width:900px;margin:30px auto;padding:0 16px}
+#authView{display:flex;justify-content:center;align-items:center;min-height:70vh}
+#appView{display:none}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.05);padding:28px;margin-bottom:26px;border:1px solid #eaeaea}
+#authView .card{width:100%;max-width:420px}
+.mh{text-align:center;margin-bottom:22px}.mh h2{font-size:24px;font-weight:900;color:var(--p)}.mh p{color:#666;font-size:14px}
+h1{font-size:24px;margin-bottom:8px}.card>p{color:#666;margin-bottom:20px}
+.st{font-size:16px;font-weight:700;margin:22px 0 12px;border-bottom:2px solid var(--p);padding-bottom:5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.ib{margin-bottom:14px}.ib label{display:block;font-weight:700;margin-bottom:5px;font-size:14px;color:#444}
+input,textarea,select{width:100%;padding:12px;border:1px solid var(--bd);border-radius:8px;font-size:14px;outline:none;background:#fafafa}
+input:focus,textarea:focus,select:focus{border-color:var(--p);background:#fff;box-shadow:0 0 0 3px rgba(255,71,71,.1)}
+textarea{height:90px;resize:vertical}
+.calc{background:#fff8f6;border:1px solid #ffd8d0;padding:15px;border-radius:10px;margin:6px 0 18px}
+.calc h4{color:var(--p);font-size:15px;margin-bottom:8px}
+#dzd{font-size:18px;font-weight:900;color:var(--ok)}
+.file{border:2px dashed var(--bd);padding:15px;text-align:center;border-radius:8px;background:#fafafa;cursor:pointer;font-weight:600;font-size:14px}
+.file:hover{border-color:var(--p);background:#fff3f3}
+#fname{font-size:13px;color:var(--ok);margin-top:6px;font-weight:600}
+.submit{background:linear-gradient(135deg,#ff4747,#ff6b00);color:#fff;border:none;width:100%;padding:14px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;margin-top:10px}
+.submit:disabled{opacity:.6;cursor:wait}
+.review{border:1px solid #eee;padding:14px;border-radius:8px;margin-bottom:10px}
+.review b{font-size:14px}.stars{color:#f59e0b;font-size:12px}.review div:last-child{font-size:13px;color:#555}
+.sw{text-align:center;margin-top:18px;font-size:13px;color:#666}.sw a{color:var(--p);font-weight:700;cursor:pointer}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#333;color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;transition:.3s;z-index:3000;max-width:90%;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.ok-box{display:none;margin-top:20px;background:#f0fff4;border:1px solid #c6f6d5;border-radius:10px;padding:16px;color:#22543d;font-size:14px}
+</style>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="top-banner"><span>هدية التسجيل</span> 50 عملة ترحيبية + 100 عملة عند موافقة الإدارة على الحوالة!</div>
+
+<header id="header">
+  <div class="brand"><i class="fa-solid fa-bag-shopping"></i><b>AloExpress Store</b></div>
+  <div class="actions">
+    <div class="dropdown">
+      <button class="dropbtn" type="button"><i class="fa-solid fa-bars"></i> القائمة</button>
+      <div class="dropdown-content">
+        <div class="dsec"><h4><i class="fa-solid fa-shield-halved"></i> معلومات البائع</h4>
+          <p><strong>الاسم:</strong> زيدان إبراهيم أنور السادات</p>
+          <p><strong>الولاية:</strong> سطيف (عين موس)</p>
+          <p><strong>البريد:</strong> zidaneibrahimanouaressadat@gmail.com</p></div>
+        <div class="dsec"><h4><i class="fa-solid fa-wallet"></i> المحفظة (1 عملة = 1 دج)</h4>
+          <p id="wallet">الرصيد: 0 عملة</p></div>
+        <div class="dsec"><p><a href="#" id="shareLink" style="color:#0066cc">مشاركة رابط الموقع</a></p></div>
+      </div>
+    </div>
+    <button class="btn dark" id="themeBtn" type="button" title="الوضع الليلي"><i class="fa-solid fa-moon"></i></button>
+    <button class="btn dark" id="logoutBtn" type="button"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+  </div>
+</header>
+
+<div class="container">
+  <div id="authView"><div class="card">
+    <div id="loginBox">
+      <div class="mh"><h2>AloExpress Store</h2><p>سجّل الدخول للوصول إلى الطلب والمحفظة</p></div>
+      <div class="ib"><input id="loginUsername" placeholder="اسم المستخدم" autocomplete="username"></div>
+      <div class="ib"><input id="loginPassword" type="password" placeholder="كلمة المرور" autocomplete="current-password"></div>
+      <button class="submit" id="loginBtn" type="button" style="margin-top:0">تسجيل الدخول</button>
+      <div class="sw">ليس لديك حساب؟ <a id="toReg">إنشاء حساب (هدية 50 عملة)</a></div>
+      <div class="sw">نسيت كلمة المرور؟ تواصل مع البائع عبر البريد.</div>
+    </div>
+    <div id="regBox" style="display:none">
+      <div class="mh"><h2>حساب جديد</h2><p>احصل على 50 عملة ترحيبية</p></div>
+      <div class="ib"><input id="regFullName" placeholder="الاسم الكامل" maxlength="50"></div>
+      <div class="ib"><input id="regUsername" placeholder="اسم المستخدم (إنجليزي/أرقام)" maxlength="20" autocomplete="username"></div>
+      <div class="ib"><input id="regPassword" type="password" placeholder="كلمة المرور (6 أحرف على الأقل)" autocomplete="new-password"></div>
+      <button class="submit" id="regBtn" type="button" style="margin-top:0">إنشاء الحساب</button>
+      <div class="sw">لديك حساب؟ <a id="toLogin">تسجيل الدخول</a></div>
+    </div>
+  </div></div>
+
+  <div id="appView">
+    <div class="hero">
+      <h1 id="hello">أهلاً بك 👋</h1>
+      <p>اطلب من علي إكسبرس وتيمو بسهولة، وادفع بالدينار واستلم في ولايتك.</p>
+      <div class="stats">
+        <div class="stat"><b id="stCoins">0</b>رصيدك (عملة)</div>
+        <div class="stat"><b id="stOrders">0</b>طلبات المتجر</div>
+        <div class="stat"><b id="stUsers">0</b>زبون مسجّل</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><i class="fa-solid fa-link"></i>1. ضع الروابط</div>
+      <div class="step"><i class="fa-solid fa-calculator"></i>2. احسب السعر</div>
+      <div class="step"><i class="fa-solid fa-receipt"></i>3. أرسل الحوالة</div>
+      <div class="step"><i class="fa-solid fa-box-open"></i>4. استلم طردك</div>
+    </div>
+    <div class="card">
+      <h1>طلب المنتجات وإرسال الطرد</h1>
+      <p>أدخل معلومات الشحن وروابط المنتجات وسعرها بالدولار ليُحسب بالدينار (1$ = 290 دج).</p>
+      <div class="st"><i class="fa-solid fa-user-shield"></i> معلومات الشحن</div>
+      <div class="grid">
+        <div class="ib"><label>الاسم الكامل</label><input id="clientName" maxlength="60"></div>
+        <div class="ib"><label>رقم الهاتف</label><input id="clientPhone" inputmode="tel" placeholder="0555123456" maxlength="10"></div>
+        <div class="ib"><label>الولاية</label><input id="clientState" value="سطيف" maxlength="40"></div>
+        <div class="ib"><label>العنوان التفصيلي</label><input id="clientAddress" placeholder="الحي، الشارع..." maxlength="150"></div>
+      </div>
+      <div class="st"><i class="fa-solid fa-cart-shopping"></i> المنتجات</div>
+      <div class="ib"><label>روابط المنتجات (رابط في كل سطر، حتى 10)</label><textarea id="links" placeholder="https://www.aliexpress.com/item/..."></textarea></div>
+      <div class="ib"><label>ملاحظات (اللون، المقاس...)</label><textarea id="notes" maxlength="300"></textarea></div>
+      <div class="calc"><h4><i class="fa-solid fa-calculator"></i> حاسبة السعر</h4>
+        <div class="ib" style="margin-bottom:6px"><label>السعر الإجمالي بالدولار ($)</label><input type="number" id="usd" step="0.01" min="0" placeholder="15.5"></div>
+        <div>الإجمالي: <span id="dzd">0 دج</span></div></div>
+      <div class="st"><i class="fa-solid fa-receipt"></i> إثبات الدفع</div>
+      <div class="file" id="fileBox"><i class="fa-solid fa-cloud-arrow-up" style="font-size:24px;color:#ff4747"></i><div>اضغط لرفع صورة الحوالة (إجباري، حتى 5MB)</div>
+        <input type="file" id="receipt" accept="image/jpeg,image/png,image/webp" style="display:none"></div>
+      <div id="fname"></div>
+      <button class="submit" id="orderBtn" type="button"><i class="fa-solid fa-paper-plane"></i> إرسال الطلب</button>
+      <div id="okBox" class="ok-box"></div>
+    </div>
+
+    <div class="card">
+      <div class="st" style="margin-top:0"><i class="fa-solid fa-clock-rotate-left"></i> طلباتي</div>
+      <div id="myOrders"><p style="color:#888;font-size:13px">لا توجد طلبات بعد.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="st" style="margin-top:0"><i class="fa-solid fa-circle-question"></i> أسئلة شائعة</div>
+      <details><summary>كيف أحسب سعر طلبي؟</summary><p>اجمع أسعار المنتجات بالدولار، والموقع يحوّلها تلقائياً بسعر 1$ = 290 دج.</p></details>
+      <details><summary>متى أحصل على مكافأة 100 عملة؟</summary><p>بعد أن تراجع الإدارة صورة الحوالة وتوافق، وتظهر حالة طلبك "مقبول".</p></details>
+      <details><summary>كم يستغرق الوصول؟</summary><p>يختلف حسب المتجر وشركة الشحن، وتتواصل معك الإدارة بعد قبول الطلب.</p></details>
+    </div>
+
+    <div class="card">
+      <div class="st" style="margin-top:0"><i class="fa-solid fa-star"></i> آراء الزبائن</div>
+      <div class="ib"><label>التقييم</label><select id="rating"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option><option value="2">★★</option><option value="1">★</option></select></div>
+      <div class="ib"><label>رأيك</label><textarea id="comment" style="height:70px" maxlength="300"></textarea></div>
+      <button class="btn dark" id="reviewBtn" type="button" style="margin-bottom:20px">إضافة التقييم</button>
+      <div id="reviews"></div>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
